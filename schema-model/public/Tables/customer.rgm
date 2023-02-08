@@ -1,0 +1,103 @@
+table "public"."customer" {
+  primaryKey = {
+    columns = [
+      "customer_id"
+    ]
+    name = "customer_pkey"
+    objectType = primaryKey
+  }
+  columns = (
+    column "customer_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "store_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "first_name" {
+      type = text
+      null = NOT NULL
+    }
+    column "last_name" {
+      type = text
+      null = NOT NULL
+    }
+    column "email" {
+      type = text
+    }
+    column "address_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "activebool" {
+      type = boolean
+      null = NOT NULL
+      default = true
+    }
+    column "create_date" {
+      type = date
+      null = NOT NULL
+      default = CURRENT_DATE
+    }
+    column "last_update" {
+      type = timestamp(2) with time zone
+      default = now()
+    }
+    column "active" {
+      type = integer
+    }
+  )
+}
+
+foreignKey "public"."customer"."customer_address_id_fkey" {
+  columns = [
+    "address_id"
+  ]
+  referencedTable = "public"."address"
+  referencedColumns = [
+    "address_id"
+  ]
+  onUpdate = CASCADE
+  onDelete = RESTRICT
+}
+
+foreignKey "public"."customer"."customer_store_id_fkey" {
+  columns = [
+    "store_id"
+  ]
+  referencedTable = "public"."store"
+  referencedColumns = [
+    "store_id"
+  ]
+  onUpdate = CASCADE
+  onDelete = RESTRICT
+}
+
+index "public"."idx_fk_address_id" {
+  table = "public"."customer"
+  type = btree
+  columns = [
+    address_id
+  ]
+  isUnique = False
+}
+
+index "public"."idx_fk_store_id" {
+  table = "public"."customer"
+  type = btree
+  columns = [
+    store_id
+  ]
+  isUnique = False
+}
+
+index "public"."idx_last_name" {
+  table = "public"."customer"
+  type = btree
+  columns = [
+    last_name
+  ]
+  isUnique = False
+}
+

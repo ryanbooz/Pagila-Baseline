@@ -1,0 +1,50 @@
+table "public"."store" {
+  primaryKey = {
+    columns = [
+      "store_id"
+    ]
+    name = "store_pkey"
+    objectType = primaryKey
+  }
+  columns = (
+    column "store_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "manager_staff_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "address_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "last_update" {
+      type = timestamp with time zone
+      null = NOT NULL
+      default = now()
+    }
+  )
+}
+
+foreignKey "public"."store"."store_address_id_fkey" {
+  columns = [
+    "address_id"
+  ]
+  referencedTable = "public"."address"
+  referencedColumns = [
+    "address_id"
+  ]
+  onUpdate = CASCADE
+  onDelete = RESTRICT
+}
+
+index "public"."idx_unq_manager_staff_id" {
+  table = "public"."store"
+  type = btree
+  columns = [
+    manager_staff_id
+  ]
+  isUnique = True
+}
+

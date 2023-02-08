@@ -1,0 +1,34 @@
+{
+  "version": "2.0",
+  "name": "Pagila Baseline",
+  "id": "f9845e42-4907-4a3c-bbaa-2f8c0ff3a561",
+  "databaseType": "PostgreSql",
+  "development": {
+    "scriptsFolder": "./schema-model"
+  },
+  "deployment": {
+    "flywayConfFiles": [
+      "./flyway.conf"
+    ],
+    "targetDatabases": [
+      {
+        "connectionProvider": {
+          "type": "UsernamePassword",
+          "url": "jdbc:postgresql://redgate-internal.redgate-platform.com:32149/pagila_prod_bl",
+          "username": "spawn_admin_diME",
+          "password": {
+            "secretType": "DefaultSecretStore",
+            "name": "Flyway Desktop 2eea718e-5e9c-4bcb-8260-69103c40d809"
+          }
+        },
+        "schemas": [
+          "public"
+        ],
+        "displayName": "Pagila Prod Baseline"
+      }
+    ]
+  },
+  "schemas": [
+    "public"
+  ]
+}

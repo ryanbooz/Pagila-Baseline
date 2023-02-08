@@ -1,0 +1,50 @@
+table "public"."film_category" {
+  primaryKey = {
+    columns = [
+      "film_id"
+      "category_id"
+    ]
+    name = "film_category_pkey"
+    objectType = primaryKey
+  }
+  columns = (
+    column "film_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "category_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "last_update" {
+      type = timestamp(2) with time zone
+      null = NOT NULL
+      default = now()
+    }
+  )
+}
+
+foreignKey "public"."film_category"."film_category_category_id_fkey" {
+  columns = [
+    "category_id"
+  ]
+  referencedTable = "public"."category"
+  referencedColumns = [
+    "category_id"
+  ]
+  onUpdate = CASCADE
+  onDelete = RESTRICT
+}
+
+foreignKey "public"."film_category"."film_category_film_id_fkey" {
+  columns = [
+    "film_id"
+  ]
+  referencedTable = "public"."film"
+  referencedColumns = [
+    "film_id"
+  ]
+  onUpdate = CASCADE
+  onDelete = RESTRICT
+}
+
