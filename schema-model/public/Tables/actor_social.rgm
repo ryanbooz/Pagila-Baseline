@@ -1,0 +1,55 @@
+table "public"."actor_social" {
+  columns = (
+    column "actor_id" {
+      type = integer
+    }
+    column "social_network_id" {
+      type = integer
+    }
+    column "handle" {
+      type = text
+      null = NOT NULL
+    }
+  )
+}
+
+foreignKey "public"."actor_social"."actor_social_actor_id_fkey" {
+  columns = [
+    "actor_id"
+  ]
+  referencedTable = "public"."actor"
+  referencedColumns = [
+    "actor_id"
+  ]
+  onDelete = CASCADE
+}
+
+foreignKey "public"."actor_social"."actor_social_social_network_id_fkey" {
+  columns = [
+    "social_network_id"
+  ]
+  referencedTable = "public"."social_networks"
+  referencedColumns = [
+    "social_network_id"
+  ]
+  onDelete = CASCADE
+}
+
+index "public"."idx_actor_id" {
+  table = "public"."actor_social"
+  type = btree
+  columns = [
+    actor_id
+  ]
+  isUnique = False
+}
+
+index "public"."idx_social_network_id" {
+  table = "public"."actor_social"
+  type = btree
+  columns = [
+    social_network_id
+  ]
+  isUnique = False
+}
+
