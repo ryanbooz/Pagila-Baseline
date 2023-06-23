@@ -1,0 +1,9 @@
+index "public"."ix_abc_mv" {
+  table = "public"."rental_by_category"
+  type = btree
+  columns = [
+    category
+  ]
+  isUnique = False
+}
+

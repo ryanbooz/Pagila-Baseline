@@ -10,6 +10,7 @@ table "public"."category" {
     column "category_id" {
       type = integer
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "name" {
       type = text

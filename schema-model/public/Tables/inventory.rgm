@@ -10,6 +10,7 @@ table "public"."inventory" {
     column "inventory_id" {
       type = integer
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "film_id" {
       type = integer

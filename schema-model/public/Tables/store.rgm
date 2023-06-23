@@ -10,6 +10,7 @@ table "public"."store" {
     column "store_id" {
       type = integer
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "manager_staff_id" {
       type = integer
