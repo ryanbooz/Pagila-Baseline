@@ -10,6 +10,7 @@ table "public"."social_networks" {
     column "social_network_id" {
       type = integer
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "name" {
       type = text

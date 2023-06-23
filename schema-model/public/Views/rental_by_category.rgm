@@ -1,0 +1,29 @@
+view "public"."rental_by_category" {
+  text = """-
+SELECT c.name AS category,
+    sum(p.amount) AS total_sales,
+    'newdata'::text AS new_data
+   FROM ((((((public.payment p
+     JOIN public.rental r ON ((p.rental_id = r.rental_id)))
+     JOIN public.inventory i ON ((r.inventory_id = i.inventory_id)))
+     JOIN public.film f ON ((i.film_id = f.film_id)))
+     JOIN public.film_category fc ON ((f.film_id = fc.film_id)))
+     JOIN public.category c ON ((fc.category_id = c.category_id)))
+     JOIN public.store s ON ((i.store_id = s.store_id)))
+  GROUP BY c.name
+  ORDER BY (sum(p.amount)) DESC;
+"""
+  kind = MATERIALIZED
+  columns = (
+    column "category" {
+      type = text
+    }
+    column "total_sales" {
+      type = "numeric"
+    }
+    column "new_data" {
+      type = text
+    }
+  )
+}
+

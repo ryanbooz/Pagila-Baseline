@@ -1,0 +1,5 @@
+extension "postgres_fdw" {
+  version = 1.1
+  schema = "public"
+}
+

@@ -1,0 +1,5 @@
+extension "pgstattuple" {
+  version = 1.5
+  schema = "public"
+}
+

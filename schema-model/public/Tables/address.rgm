@@ -10,6 +10,7 @@ table "public"."address" {
     column "address_id" {
       type = integer
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "address" {
       type = text

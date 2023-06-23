@@ -10,6 +10,7 @@ table "public"."rental" {
     column "rental_id" {
       type = bigint
       null = NOT NULL
+      generatedAsIdentity = BY DEFAULT
     }
     column "rental_date" {
       type = timestamp with time zone
